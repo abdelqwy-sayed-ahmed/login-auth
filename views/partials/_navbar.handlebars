@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-info mb-4">
+  <div class="container">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {{#if user}}
+       
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/logout">Logout</a>
+      </li>
+      {{!-- <li class="nav-item ml-auto">
+        <a class="nav-link">
+          {{user.firstName}} --}}
+        </a>
+        </li>
+      {{else}}
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/login">Login</a>
+      </li>
+      
+
+      {{/if}}
+        </ul>
+        </div>
+        
+</nav>
