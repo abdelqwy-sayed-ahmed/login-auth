@@ -1,11 +1,12 @@
 const express=require('express');
 const exphbs=require('express-handlebars');
+const methodOverride = require('method-override')
 const cookieParser=require('cookie-parser');
+const bodyParser = require('body-parser')
 const session=require('express-session');
 const auth=require('./router/auth');
 const users=require('./router/users');
-
-//passport config
+const stories=require('./router/stories');
 const passport=require('passport');
 require('./auth/google')(passport);
 require('./auth/facebook');
@@ -14,8 +15,14 @@ const app=express();
 
 
 
+
 //Load Schema
-require('./models/User');
+require('./models/User'); 
+require('./models/Story');
+const{
+  truncate,formatDate,stripTags,select,isequal
+}=require('./helpers/hbs');
+
 //connect to mongoose
 const keys=require('./config/keys');
 const mongoose=require('mongoose');
@@ -32,9 +39,24 @@ mongoose.connect(keys.mongoURI,{
 
 //handlebars Middleware
 app.engine('handlebars',exphbs({
+  helpers:{
+  truncate:truncate,
+  stripTags:stripTags,
+  select:select,
+  formatDate:formatDate,
+  isequal:isequal
+
+  
+  },
   defaultLayout:'main'
 })), 
-app.set('view engine','handlebars')
+app.set('view engine','handlebars');
+//Body Parser
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+
+// override 
+app.use(methodOverride('_method'));
 
 //Home page
 app.get('/',(req,res)=>{
@@ -74,6 +96,8 @@ app.use((req,res, next) => {
 // Router;
 app.use('/auth',auth);
 app.use('/users',users);
+app.use('/stories',stories);
+
 
 
 

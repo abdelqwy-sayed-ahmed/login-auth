@@ -1,1 +1,46 @@
-<h3>Dash-Board Content </h3>
+
+<div class="card mb-5" style="width: 18.5rem ;">
+  <img class="card-img-top" src="{{user.picture}}" alt="{{user.firstName}}">
+  <div class="card-body">
+    <h5 class="card-title text-center">{{user.firstName}}</h5>
+    <h6 class="card-text text-center text-danger ">{{user.email}}</h6>
+  </div>
+</div>
+
+{{#if stories}}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Story Title</th>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each stories}}
+    <tr>
+      
+      <td><a href="/stories/show/{{id}}">{{title}}</a> </td>
+      <td>{{formatDate date 'MMMM Do YYYY'}}</td>
+      <td>{{status}}</td>
+      <td><a href="/stories/edit/{{id}}"> <i class="fa fa-pencil"></i></a></td>
+
+      <td>
+        <form action="/stories/{{id}}?_method=DELETE" method="POST" >
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
+      </form>
+      </td>
+
+
+      
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>
+
+
+{{else}}
+<p>No stories Found</p>
+{{/if}}

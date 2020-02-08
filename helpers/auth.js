@@ -4,5 +4,6 @@ module.exports={
       return next();
     }
     res.redirect('/auth/login')
+  
   }
 }

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-9 mb-2">
+   <div class="card text-center">
+  <div class="card-header">
+    {{story.title}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{story.title}}</h5>
+    <p class="card-text">{{{story.content}}}</p>
+    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+  </div>
+  <div class="card-footer d-center">
+    {{formatDate story.date 'MMM Do YYYY'}}
+  </div>
+</div> 
+
+  </div>
+  <div class="col-md-3">
+   <div class="card">
+  <img class="card-img-top" src="{{story.user.picture}}" >
+  <div class="card-body">
+    <h6 class="card-title text-center text-info"> {{story.user.firstName}}</h6>
+   
+    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+  </div>
+</div> 
+  </div>
+</div>

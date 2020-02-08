@@ -1,32 +1,43 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-info mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-info mb-4">
   <div class="container">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Login-App</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-auto">
       {{#if user}}
        
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="/users/dashboard">Dashboard</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/auth/logout">Logout</a>
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Stories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/stories/add"> <i class="fa fa-plus"></i> Add </a>
+          <a class="dropdown-item" href="/stories/list"> <i class="fa fa-list"></i> Stories List</a>
+          </div>
       </li>
-      {{!-- <li class="nav-item ml-auto">
-        <a class="nav-link">
-          {{user.firstName}} --}}
+       <li class="nav-item">
+        <a class="nav-link" href="/auth/logout"> <i class="fa fa-sign-out"></i> Logout</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link active"> Welcome: 
+          {{user.firstName}}
         </a>
         </li>
+       
+        
       {{else}}
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/"> <i class="fa fa-home"></i> Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/auth/login">Login</a>
+        <a class="nav-link" href="/auth/login"> <i class="fa fa-sign-in"></i> Login</a>
       </li>
       
 

@@ -1,0 +1,25 @@
+{{!-- {{#isequal status= "Public"}} --}}
+<div class="row">
+  {{#each stories}}
+  <div class="col-md-4 mb-2">
+    
+<div class="card">
+  <div class="card-header">
+    {{title}}
+  </div>
+  <div class="card-body">
+    <h6 class="card-title font-italic text-danger">By:{{user.firstName}}</h6>
+    <p class="card-text" style="min-height:120px;">{{stripTags (truncate content 200)}}</p>
+    <a href="/stories/show/{{id}}" class="btn btn-primary" >Read More</a>
+  </div>
+</div>
+
+   
+</div>
+{{else}}
+    <h1>No Stories Found</h1>
+
+    {{/each}}
+</div>
+
+ {{!-- {{/isequal}} --}}

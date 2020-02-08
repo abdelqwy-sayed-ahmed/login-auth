@@ -12,7 +12,8 @@ const UserSchema=new Schema({
     type:String
   },
   picture:{
-    type:String
+    type:String,data:Buffer
+    
   },
   provider:{
     type:String
