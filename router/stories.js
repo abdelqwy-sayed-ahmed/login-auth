@@ -42,7 +42,7 @@ router.post('/',(req,res)=>{
 
 router.get('/list',ensureAuthenticated,(req,res)=>{
   //display results
-  Story.find({})
+  Story.find({status:'Public'})
   .sort({date:'asc'})
   .populate('user') //to bring values from users collection
   .then(stories =>{
