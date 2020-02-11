@@ -40,7 +40,7 @@ router.post('/',(req,res)=>{
 
 });
 
-router.get('/list',ensureAuthenticated,(req,res)=>{
+router.get('/list',(req,res)=>{
   //display results
   Story.find({status:'Public'})
   .sort({date:'asc'})
@@ -67,17 +67,35 @@ router.get('/edit/:id',ensureAuthenticated,(req,res)=>{
   });
 });
 
-router.get('/show/:id',ensureAuthenticated,(req,res)=>{
+router.get('/show/:id',(req,res)=>{
   Story.findOne({
     _id:req.params.id
   })
   .populate('user')
+  .populate('comments.commentUser')
   .then(story =>{
     res.render('stories/show',{
       story:story
     });
   });
 });
+
+//list stories for specific user
+router.get('/user/:userId',ensureAuthenticated, (req,res)=>{
+  //display results
+  Story.find({user: req.params.userId, status:'Public'})
+  .sort({date:'asc'})
+  .populate('user') //to bring values from users collection
+  .then(stories =>{
+    res.render('stories/list',{
+      stories:stories
+    });
+    // console.log(stories);
+
+  });
+
+});
+
 
 //Edit Form process
 router.put('/:id',ensureAuthenticated,(req,res)=>{
@@ -113,6 +131,26 @@ router.delete('/:id',ensureAuthenticated,(req,res)=>{
     res.redirect('/users/dashboard');
   });
 });
+
+//Post comment
+router.post('/comment/:id',(req,res)=>{
+  Story.findOne({
+    _id:req.params.id
+  })
+  .then(story =>{
+    const newComment={
+      commentBody:req.body.commentBody,
+      commentUser:req.user.id
+    }
+    //Add to Comment Array
+    story.comments.unshift(newComment);
+    story.save()
+    .then(story=>{
+      console.log(newComment);
+      res.redirect(`/stories/show/${story.id}`);
+    })
+  });
+}) 
 
 
 module.exports=router;

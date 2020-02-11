@@ -7,22 +7,64 @@
   <div class="card-body">
     <h5 class="card-title">{{story.title}}</h5>
     <p class="card-text">{{{story.content}}}</p>
-    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-  </div>
-  <div class="card-footer d-center">
-    {{formatDate story.date 'MMM Do YYYY'}}
-  </div>
-</div> 
 
   </div>
+  <div class="card-footer d-center">
+    {{formatDate story.date 'MMMM Do YYYY'}}
+  </div>
+ </div>
+  {{#if story.allowComments}}
+  <div class="card mt-2 mb-3">
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Post acomment
+  </a>
+  
+</p>
+{{#if user}}
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <form action="/stories/comment/{{story.id}}" method="POST">
+    <div class="form-group">
+      <label for="addComment"> Add Comment</label>
+    <textarea name="commentBody" class="form-control"> </textarea>
+    </div>
+    <button class="btn btn-success"> Add</button>
+
+    </form>
+  </div>
+</div>
+{{else}}
+<p>please <a href="/auth/login">Login</a> to post acomment </p>
+{{/if}}
+  
+</div>
+{{/if}}
+
+{{#each story.comments}}
+<div class="card mb-2">
+  <div class="card body text-center">
+<h4>{{commentBody}}</h4>
+</div>
+<div class="crad-footer">
+<div class="chip chip-md">
+  <img src="{{commentUser.picture}}"> {{commentUser.firstName}} || {{ formatDate commentDate 'MM-DD- YYYY HH:MM' }}
+  </div>
+</div>
+
+
+
+</div>
+{{/each}}
+</div>
   <div class="col-md-3">
    <div class="card">
   <img class="card-img-top" src="{{story.user.picture}}" >
-  <div class="card-body">
-    <h6 class="card-title text-center text-info"> {{story.user.firstName}}</h6>
-   
-    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+  <div class="card-body text-center">
+    <h6 class="text-info"> {{story.user.firstName}}</h6>
+    <p class="d-block"><i class="fa fa-envelope aria-hidden="true""></i>{{story.user.email}}</p>
+  </div> 
+  <div class="card-footer text-center">
+    <a href="/stories/user/{{story.user.id}}" class="text-info">My Stories</h6> 
   </div>
 </div> 
   </div>
-</div>

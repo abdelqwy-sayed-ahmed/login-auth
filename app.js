@@ -57,6 +57,8 @@ app.use(bodyParser.json());
 
 // override 
 app.use(methodOverride('_method'));
+//link with css file
+app.use(express.static((__dirname, 'public')));
 
 //Home page
 app.get('/',(req,res)=>{
