@@ -1,10 +1,20 @@
 body{
   background:light-gray;
   font-style: italic;
-  height: 100vh;
+  
+  
   
 }
+#footer {
+  /* flex-shrink: none; */
+  clear: both;
+  position: relative;
+  bottom: 0;
+  height: 50px;
+  margin-top: 100%;
 
+
+}
 
  .chip.chip-md { 
   height: 42px;
