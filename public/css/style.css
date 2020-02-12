@@ -5,6 +5,10 @@ body{
   
   
 }
+#login{
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
 #footer {
   /* flex-shrink: none; */
   clear: both;
@@ -12,7 +16,7 @@ body{
   width: 100%;
   bottom: 0;
   height: 55px;
-  margin-top:65%;
+  margin-top:50%;
 
 
 }
